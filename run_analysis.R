@@ -1,3 +1,4 @@
+## read data in
 xtrain <- read.table("./train/x_train.txt")
 ytrain <- read.table("./train/y_train.txt")
 subtrain <- read.table("./train/subject_train.txt")
@@ -27,19 +28,20 @@ ytrain$'activity name' <- ordered(ytrain$V1,
                         levels = actlabel[,1],
                         labels = actlabel[,2])
 
-## 1 again, 
+## 1 again 
 test <- cbind(xtest,ytest,subtest)
 train <- cbind(xtrain,ytrain,subtrain)
 
 comb <- rbind(train,test)
+
 ## 2
 t1 = comb[,grepl("^[^_]+mean+[()]|std",names(comb))]
-
+t1 = cbind(comb[,562:564],t1)
 ## 4
 
 
-new <- comb
-new5 <- aggregate(new[,1:561],list(comb$`class labels`,comb$subject),mean)
+new <- t1
+new5 <- aggregate(t1[,4:69],list(t1$`class labels`,t1$subject),mean)
 
 ## output created
 write.table(new5,"output.txt",row.names = FALSE)
