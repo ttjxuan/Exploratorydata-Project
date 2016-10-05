@@ -41,7 +41,7 @@ t1 = cbind(comb[,562:564],t1)
 
 
 new <- t1
-new5 <- aggregate(t1[,4:69],list(t1$`class labels`,t1$subject),mean)
+new5 <- aggregate(t1[,4:69],list(t1$`activity name`,t1$subject),mean)
 
 ## output created
 write.table(new5,"output.txt",row.names = FALSE)
